@@ -1,11 +1,20 @@
 package com.example.proiect;
 
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Random;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.SumPathEffect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -21,7 +30,6 @@ import android.widget.TextView;
 
 @SuppressLint("NewApi")
 public class MainActivity extends Activity {
-
 	public int color0 = Color.parseColor("#CDC9C9");
 	public int color2 = Color.parseColor("#0066FF");
 	public int color4 = Color.CYAN;
@@ -51,6 +59,8 @@ public class MainActivity extends Activity {
 	final TextView [][] t = new TextView[4][4];
 	final TextView [][] marks = new TextView[4][4];
 	boolean win_game = false;
+	
+
 	
 	
 	@Override
@@ -875,6 +885,12 @@ final EditText verificare = (EditText)findViewById(R.id.verificare);
 	
 	public void update_matrix()
 	{
+		if(nr_moves == 10){
+			Intent myIntent = new Intent(this, Submit.class);
+			startActivity(myIntent);
+			Global.SCORE = score;
+			Global.MOVES = nr_moves;
+		}
 		int i, j;
 		for(i = 0; i < 4; i++)
 			for(j = 0; j < 4; j++)
@@ -1043,9 +1059,10 @@ final EditText verificare = (EditText)findViewById(R.id.verificare);
 		mv.setText(""+nr_moves);
 		
 		clear_matrix(moves);
-		
 	}
 	
+
+		
 	@Override
 	protected void onStart() {
 		super.onStart();
