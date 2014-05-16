@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
 	final TextView [][] t = new TextView[4][4];
 	final TextView [][] marks = new TextView[4][4];
 	boolean win_game = false;
-	
+	boolean end_game = false;
 
 	
 	
@@ -74,9 +74,11 @@ final EditText verificare = (EditText)findViewById(R.id.verificare);
 		nr_moves = 0;
 		
 		clear_matrix(m);
+		//test();
 		
+		//put_random();
 		put_random();
-		put_random();
+
 		
 		int i, j;
 		for(i = 0; i < 4; i++)
@@ -140,7 +142,7 @@ final EditText verificare = (EditText)findViewById(R.id.verificare);
 				p.height = (int) (width/4) - 5 * margin;
 			}
 		//convertDpToPixel(t[0][0].getWidth());
-		verificare.setText(""+t[0][0].getLayoutParams().width);
+		//verificare.setText(""+t[0][0].getLayoutParams().width);
 		slide_dist = t[0][0].getLayoutParams().width;
 		update_matrix();
 		
@@ -840,13 +842,78 @@ final EditText verificare = (EditText)findViewById(R.id.verificare);
 					nr++;
 		return nr;
 	}
+	
+	
+	public void test(){
+		m[0][0]=2;m[0][1]=4;m[0][2]=8;m[0][3]=16;
+		m[1][0]=16;m[1][1]=8;m[1][2]=4;m[1][3]=2;
+		m[2][0]=128;m[2][1]=512;m[2][2]=8;m[2][3]=512;
+		m[3][0]=0;m[3][1]=0;m[3][2]=1024;m[3][3]=0;
+	}
+	public boolean game_over(){
+		int i,j;
+		/*for (i = 0; i < 3; i++)
+			for (j = 0; j < 4; j++)
+				if(m[i][j] == m[i+1][j])
+					return false;
+		for (i = 0; i < 4; i++)
+			for (j = 0; j < 3; j++)
+				if(m[i][j] == m[i][j+1])
+					return false;
+		*/
+		
+			/*for (i = 0; i < 4; i++)
+				for (j = 0; j < 4; j++){
+						if( i-1 >= 0 && m[i][j] == m[i-1][j] && m[i][j]==0 && m[i-1][j]==0)
+							return false;
+						if( j-1 > 0 && m[i][j] == m[i][j-1] && m[i][j]==0 && m[i][j-1]==0)
+							return false;
+				}*/
+		
+		
+		//if(empty_squares() == 0)
+		boolean ok=false;
+		for (i = 0; i < 4; i++)
+			for (j = 0; j < 4; j++)
+				if (m[i][j] == 0)
+				{
+					ok=true;
+					break;
+				}
+		//if (!ok)
+		if(empty_squares() == 0)
+		{
+		for (i=0; i<=3; i++)
+			for (j=0; j<=3; j++)
+			{
+				if((i-1) >= 0)
+					if((m[i-1][j] == m[i][j]) && (m[i][j] != 0))
+						return false;
+				if((j-1) >= 0)
+					if((m[i][j-1] == m[i][j]) && (m[i][j] != 0))
+						return false;
+				if((i+1) <= 3)
+					if((m[i+1][j] == m[i][j]) && (m[i][j] != 0))
+						return false;
+				if((j+1) <= 3)
+					if((m[i][j+1] == m[i][j]) && (m[i][j] != 0))
+						return false;
+			}
+				
+		return true;
+		}
+		return false;
+	}
 
 	public void put_random() {
+		
 		int nr = 0, i, j, value, rand;
 		
 		nr = empty_squares();
 		
 		//if(nr == 0) ----->>> END GAME !
+		//if(nr == 0 )
+		//	end_game = true;
 		
 		Random random1 = new Random();
 		Random random2 = new Random();
@@ -859,7 +926,7 @@ final EditText verificare = (EditText)findViewById(R.id.verificare);
 			value = 4;
 
 		rand = random2.nextInt(nr);
-
+		
 		int ct = 0;
 		boolean added = false;
 		
@@ -880,17 +947,12 @@ final EditText verificare = (EditText)findViewById(R.id.verificare);
 			}
 			if(added == true)
 				break;
-			}
+			}		
 	}
 	
 	public void update_matrix()
 	{
-		if(nr_moves == 10){
-			Intent myIntent = new Intent(this, Submit.class);
-			startActivity(myIntent);
-			Global.SCORE = score;
-			Global.MOVES = nr_moves;
-		}
+		
 		int i, j;
 		for(i = 0; i < 4; i++)
 			for(j = 0; j < 4; j++)
@@ -1001,6 +1063,22 @@ final EditText verificare = (EditText)findViewById(R.id.verificare);
 		sc.setText(""+score);
 		TextView mv = (TextView)findViewById(R.id.nr_moves);
 		mv.setText(""+nr_moves);
+		
+		if(game_over()){
+			
+			for (i=0; i<=3; i++)
+			{
+			for (j=0; j<=3; j++)
+				System.out.print(m[i][j] + " ");
+			
+			System.out.println();
+			}
+		
+			Intent myIntent = new Intent(this, Submit.class);
+			startActivity(myIntent);
+			Global.SCORE = score;
+			Global.MOVES = nr_moves;
+		}
 	}
 	
 	public void undo()

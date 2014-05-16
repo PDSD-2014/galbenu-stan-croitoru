@@ -37,7 +37,8 @@ public class Submit extends Activity {
 				if(submit_name.getText().length() == 0){
 					Toast.makeText(Submit.this,"Complete name field",Toast.LENGTH_LONG).show();
 				}else{
-					Global.NAME = submit_name.getText().toString();
+					String s = new String(submit_name.getText().toString().replaceAll(" ","`"));
+					Global.NAME = s;
 					submit_score();
 					finish();
 				}

@@ -41,7 +41,8 @@ public class Highscore extends Activity {
 					dataInputStream = new DataInputStream(socket.getInputStream());
 					
 					dataOutputStream.writeUTF("get_highscores");
-					highscore.setText(dataInputStream.readUTF());
+					String s = new String(dataInputStream.readUTF().replaceAll("`"," "));
+					highscore.setText(s);
 					
 				} catch (UnknownHostException e) {
 					e.printStackTrace();
