@@ -29,6 +29,13 @@ public class server {
 		int size = 0;
 
 		File file = new File("highscores.txt");
+		if(!file.exists())
+			try {
+				file.createNewFile();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		FileInputStream fis = null;
 		BufferedInputStream bis = null;
 		DataInputStream dis = null;

@@ -23,7 +23,7 @@
             android:text="Highscore"/>
 
         <Button
-            android:id="@+id/meniu_mp"
+            android:id="@+id/meniu_exit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Exit" />

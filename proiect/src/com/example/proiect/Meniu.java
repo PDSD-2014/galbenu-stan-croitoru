@@ -25,7 +25,7 @@ public class Meniu extends Activity {
 			}
 		});
 
-		meniu_highscore = (Button) findViewById(R.id.meniu_mp);
+		meniu_highscore = (Button) findViewById(R.id.meniu_hs);
 		meniu_highscore.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -34,7 +34,7 @@ public class Meniu extends Activity {
 			}
 		});
 
-		meniu_exit = (Button) findViewById(R.id.meniu_hs);
+		meniu_exit = (Button) findViewById(R.id.meniu_exit);
 		meniu_exit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

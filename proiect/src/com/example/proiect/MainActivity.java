@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
 		nr_moves = 0;
 
 		clear_matrix(m);
-
+		test();
 		put_random();
 
 		int i, j;
@@ -826,7 +826,7 @@ public class MainActivity extends Activity {
 		int nr = 0, i, j, value, rand;
 
 		nr = empty_squares();
-
+		
 		Random random1 = new Random();
 		Random random2 = new Random();
 
@@ -1006,7 +1006,7 @@ public class MainActivity extends Activity {
 		win_game = false;
 		int i, j;
 
-		clear_matrix(m);
+		clear_matrix(m);		
 
 		put_random();
 		put_random();
