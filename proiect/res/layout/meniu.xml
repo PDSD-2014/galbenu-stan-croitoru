@@ -9,21 +9,25 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginBottom="30dp">
-        <Button 
+
+        <Button
             android:id="@+id/meniu_sp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Single player"/>
-        <Button 
-            android:id="@+id/meniu_mp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Multiplayer"/>
+            android:text="Play" />
+
         <Button 
             android:id="@+id/meniu_hs"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Highscore"/>
+
+        <Button
+            android:id="@+id/meniu_mp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Exit" />
+
     </LinearLayout>
 
 </LinearLayout>

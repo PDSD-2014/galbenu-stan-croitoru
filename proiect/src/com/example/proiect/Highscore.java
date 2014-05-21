@@ -36,7 +36,7 @@ public class Highscore extends Activity {
 				DataInputStream dataInputStream = null;
 
 				try {
-					socket = new Socket("192.168.56.1", 8889);
+					socket = new Socket("192.168.56.1", 8888);
 					dataOutputStream = new DataOutputStream(socket.getOutputStream());
 					dataInputStream = new DataInputStream(socket.getInputStream());
 					
@@ -80,7 +80,6 @@ public class Highscore extends Activity {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.highscore, menu);
 		return true;
 	}
