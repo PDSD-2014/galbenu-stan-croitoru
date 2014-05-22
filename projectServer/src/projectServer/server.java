@@ -54,6 +54,7 @@ public class server {
 				names[i] = parts[0];
 				scores[i] = Integer.parseInt(parts[1]);
 				moves[i++] = Integer.parseInt(parts[2]);
+				size = i;
 			}
 
 			fis.close();
@@ -106,8 +107,8 @@ public class server {
 								break;
 							}
 						// deplasare la dreapta
+						size++;
 						if (size < 100 && k != size) {
-							size++;
 							for (int i = size; i >= k; i--) {
 								names[i + 1] = names[i];
 								scores[i + 1] = scores[i];
@@ -123,10 +124,9 @@ public class server {
 						FileWriter fstream = new FileWriter("highscores.txt");
 						BufferedWriter out = new BufferedWriter(fstream);
 						int i;
-						for (i = 0; i < size - 1; i++)
+						for (i = 0; i < size ; i++)
 							out.write(names[i] + " " + scores[i] + " "
 									+ moves[i] + "\n");
-						out.write(names[i] + " " + scores[i] + " " + moves[i]);
 						out.close();
 					} catch (Exception e) {
 						e.printStackTrace();
